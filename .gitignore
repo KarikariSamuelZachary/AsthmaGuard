@@ -1,0 +1,7 @@
+# Flutter-related files to ignore
+mobile/.dart_tool/
+mobile/.idea/
+mobile/.vscode/
+mobile/build/
+mobile/.packages
+mobile/pubspec.lock
