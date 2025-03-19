@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "735522501248",
+    "project_id": "asthma-guard-e9a04",
+    "storage_bucket": "asthma-guard-e9a04.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735522501248:android:feddd1403ae5fdaba1ac65",
+        "android_client_info": {
+          "package_name": "com.example.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1BDavA_idriXjMHVpoYUASojYeUbcKYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
