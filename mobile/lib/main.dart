@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'screens/signup_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    home: SignupPage(), // Make sure this points to your signup page
+  ));
 }
 
 class MyApp extends StatelessWidget {
