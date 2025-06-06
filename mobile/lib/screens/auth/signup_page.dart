@@ -36,7 +36,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
     Future.delayed(const Duration(seconds: 2), () {
       setState(() => _isLoading = false);
-      Navigator.pushReplacementNamed(context, '/dashboard');
+
+      // After successful signup, go to OTP screen
+      Navigator.pushReplacementNamed(context, '/otp');
     });
   }
 

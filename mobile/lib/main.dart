@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/auth/signup_page.dart';
-import 'screens/auth/dashboard_screen.dart'; // This should define DashboardScreen
+import 'screens/auth/login_screen.dart';
+import 'screens/auth/dashboard_screen.dart';
+import 'screens/auth/otp_verification_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/signup',
       routes: {
         '/signup': (context) => SignupScreen(),
+        '/otp': (context) => OtpVerificationScreen(),
+        '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => DashboardScreen(),
       },
     );
