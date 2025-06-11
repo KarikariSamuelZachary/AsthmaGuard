@@ -38,24 +38,39 @@ class _SignupScreenState extends State<SignupScreen> {
       setState(() => _isLoading = false);
 
       // After successful signup, go to OTP screen
-      Navigator.pushReplacementNamed(context, '/otp');
+      Navigator.pushReplacementNamed(
+        context,
+        '/otp',
+        arguments: _nameController.text, // Pass the full name
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = Colors.teal; // Define primary color for consistency
 
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF121212) : Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 40),
+              // Logo/Icon Placeholder
+              Center(
+                child: Icon(
+                  Icons.app_registration,
+                  size: 80,
+                  color: primaryColor,
+                ),
+              ),
+              const SizedBox(height: 30),
               Text(
                 'Create Account',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -65,55 +80,91 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 10),
               Text(
                 'Sign up to get started',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
                   color: isDark ? Colors.white70 : const Color(0xFF666666),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 40),
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     TextFormField(
                       controller: _nameController,
-                      decoration: const InputDecoration(labelText: 'Full Name'),
+                      decoration: InputDecoration(
+                        labelText: 'Full Name',
+                        prefixIcon:
+                            Icon(Icons.person_outline, color: primaryColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: primaryColor, width: 2),
+                        ),
+                      ),
                       validator: (value) => value == null || value.isEmpty
                           ? 'Full name is required'
                           : null,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: _emailController,
-                      decoration: const InputDecoration(labelText: 'Email'),
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        prefixIcon:
+                            Icon(Icons.email_outlined, color: primaryColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: primaryColor, width: 2),
+                        ),
+                      ),
                       validator: _validateEmail,
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: _passwordController,
                       obscureText: _isObscure,
                       decoration: InputDecoration(
                         labelText: 'Password',
+                        prefixIcon:
+                            Icon(Icons.lock_outline, color: primaryColor),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: primaryColor, width: 2),
+                        ),
                         suffixIcon: IconButton(
-                          icon: Icon(_isObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility),
+                          icon: Icon(
+                            _isObscure
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: primaryColor,
+                          ),
                           onPressed: () =>
                               setState(() => _isObscure = !_isObscure),
                         ),
                       ),
                       validator: _validatePassword,
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 30),
                     ElevatedButton(
                       onPressed: _isLoading ? null : _handleSignup,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4285F4),
+                        backgroundColor: primaryColor,
                         minimumSize: const Size(double.infinity, 56),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(12),
                         ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
                       child: _isLoading
                           ? const CircularProgressIndicator(color: Colors.white)
@@ -121,20 +172,30 @@ class _SignupScreenState extends State<SignupScreen> {
                               'Sign Up',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Already have an account?'),
+                        Text(
+                          'Already have an account?',
+                          style: TextStyle(
+                              color: isDark ? Colors.white70 : Colors.black54),
+                        ),
                         TextButton(
                           onPressed: () =>
                               Navigator.pushNamed(context, '/login'),
-                          child: const Text('Log In'),
+                          child: Text(
+                            'Log In',
+                            style: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),

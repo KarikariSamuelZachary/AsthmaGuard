@@ -53,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = Colors.teal; // Define primary color
     final textColor = isDark ? Colors.white : const Color(0xFF333333);
 
     return Scaffold(
@@ -67,17 +68,13 @@ class _LoginScreenState extends State<LoginScreen>
               children: [
                 const SizedBox(height: 40),
 
-                // Logo placeholder
+                // Logo placeholder - updated to Icon
                 Center(
-                  child: Container(
-                    height: 90,
-                    width: 90,
-                    decoration: BoxDecoration(
-                      color:
-                          isDark ? Colors.grey.shade800 : Colors.grey.shade300,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.lock, size: 48),
+                  child: Icon(
+                    Icons
+                        .lock_open_outlined, // Example icon, consistent with login theme
+                    size: 80,
+                    color: primaryColor,
                   ),
                 ),
 
@@ -110,9 +107,18 @@ class _LoginScreenState extends State<LoginScreen>
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           labelText: 'Email',
-                          border: OutlineInputBorder(),
+                          prefixIcon:
+                              Icon(Icons.email_outlined, color: primaryColor),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: primaryColor, width: 2),
+                          ),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -125,17 +131,29 @@ class _LoginScreenState extends State<LoginScreen>
                           return null;
                         },
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 20), // Adjusted spacing
                       TextFormField(
                         controller: _passwordController,
                         obscureText: _isObscure,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          border: const OutlineInputBorder(),
+                          prefixIcon:
+                              Icon(Icons.lock_outline, color: primaryColor),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: primaryColor, width: 2),
+                          ),
                           suffixIcon: IconButton(
-                            icon: Icon(_isObscure
-                                ? Icons.visibility_off
-                                : Icons.visibility),
+                            icon: Icon(
+                              _isObscure
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: primaryColor,
+                            ),
                             onPressed: () =>
                                 setState(() => _isObscure = !_isObscure),
                           ),
@@ -150,43 +168,53 @@ class _LoginScreenState extends State<LoginScreen>
                           return null;
                         },
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 30), // Adjusted spacing
                       SizedBox(
                         width: double.infinity,
-                        height: 56,
+                        height: 56, // Keep height or use padding like in signup
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : _handleLogin,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4285F4),
+                            backgroundColor: primaryColor, // Use primary color
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(
+                                  12), // Consistent border radius
                             ),
+                            // padding: const EdgeInsets.symmetric(vertical: 16), // Optional: if height is removed
                           ),
                           child: _isLoading
                               ? const CircularProgressIndicator(
-                                  color: Colors.white,
-                                )
+                                  color: Colors.white)
                               : const Text(
                                   'Log In',
                                   style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
                                     color: Colors.white,
+                                    fontSize: 18, // Consistent font size
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 20), // Adjusted spacing
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don't have an account?"),
+                          Text(
+                            'Don\'t have an account?',
+                            style: TextStyle(
+                                color:
+                                    isDark ? Colors.white70 : Colors.black54),
+                          ),
                           TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                  context, '/signup');
-                            },
-                            child: const Text('Sign Up'),
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/signup'),
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                color: primaryColor, // Use primary color
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ],
                       ),
