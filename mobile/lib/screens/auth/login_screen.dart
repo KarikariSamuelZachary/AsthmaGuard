@@ -200,10 +200,10 @@ class _LoginScreenState extends State<LoginScreen>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Don\'t have an account?',
+                            "Don\\'t have an account?",
                             style: TextStyle(
                                 color:
-                                    isDark ? Colors.white70 : Colors.black54),
+                                    isDark ? Colors.white70 : Colors.grey[800]),
                           ),
                           TextButton(
                             onPressed: () =>
@@ -211,12 +211,25 @@ class _LoginScreenState extends State<LoginScreen>
                             child: Text(
                               'Sign Up',
                               style: TextStyle(
-                                color: primaryColor, // Use primary color
-                                fontWeight: FontWeight.bold,
-                              ),
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(height: 10), // Add some space
+                      TextButton(
+                        // Forgot Password Button
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/forgot-password');
+                        },
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ],
                   ),
