@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile/screens/health_report/widgets/health_report_modal.dart'; // Adjusted import path
 
-class HealthReport extends StatelessWidget {
-  const HealthReport({super.key});
+class HealthReportScreen extends StatelessWidget {
+  const HealthReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

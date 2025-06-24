@@ -41,15 +41,6 @@ class DashboardScreen extends StatelessWidget {
                 mainAxisSpacing: 16.0,
                 children: [
                   DashboardCard(
-                    title: 'Health Report',
-                    icon: Icons.health_and_safety_outlined,
-                    imagePath: 'assets/images/health_report.jpg',
-                    onTap: () {
-                      Navigator.pushNamed(context,
-                          '/health-report'); // Navigate to HealthReport
-                    },
-                  ),
-                  DashboardCard(
                     title: 'Health Tips', // Added Health Tips Card
                     icon: Icons.lightbulb_outline,
                     imagePath:
@@ -67,25 +58,6 @@ class DashboardScreen extends StatelessWidget {
                         const SnackBar(
                             content: Text('Navigate to Online Chat')),
                       );
-                    },
-                  ),
-                  DashboardCard(
-                    title: 'Find Doctors',
-                    icon: Icons.medical_services_outlined,
-                    imagePath: 'assets/images/find_doctors.jpg',
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('Navigate to Find Doctors')),
-                      );
-                    },
-                  ),
-                  DashboardCard(
-                    title: 'Pollution Tracker',
-                    icon: Icons.public_outlined,
-                    imagePath: 'assets/images/pollution_tracker.png',
-                    onTap: () {
-                      Navigator.pushNamed(context, '/pollution-tracker');
                     },
                   ),
                   DashboardCard(
